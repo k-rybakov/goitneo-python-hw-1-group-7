@@ -19,7 +19,8 @@ def change_contact(args, contacts):
     return "Contact not found"
 
 def show_all(contacts):
-    return contacts
+    for name, phone in contacts.items():
+        print(f"{name}: {phone}")
 
 def main():
     contacts = {}
@@ -31,7 +32,7 @@ def main():
         except ValueError:
             continue
         
-        num_args = 0 if 'args' in globals() else len(args)
+        num_args = len(args)
 
         if command in ["close", "exit"]:
             print("Good bye!")
@@ -55,8 +56,7 @@ def main():
             else:
                 print(show_phone(args, contacts))
         elif command == "all":
-            for name, phone in show_all(contacts).items():
-                print(f"{name}: {phone}")
+            show_all(contacts)
         else:
             print("Invalid command.")
 
